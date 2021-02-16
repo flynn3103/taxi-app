@@ -1,3 +1,4 @@
+from django.db.models import fields
 from .models import Trip
 from django.contrib.auth import get_user_model, models
 from rest_framework import serializers
@@ -46,3 +47,10 @@ class TripSerializer(serializers.ModelSerializer):
         model = Trip
         fields = '__all__'
         read_only_fields = ('id', 'created', 'updated',)
+
+
+class NestedTripSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trip
+        fields = '__all__'
+        depth = 1
